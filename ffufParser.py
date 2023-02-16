@@ -27,11 +27,11 @@ with open(args.output, 'w') as finalFile:
                     rows.append(row)
 
         for row in rows:
-            url = row[1]
-            code = row[4]
-            size = row[5]
-            words = row[6]
-            linecount = row[7]
+            url = row[2]
+            code = row[5]
+            size = row[6]
+            words = row[7]
+            linecount = row[8]
             counterSize = 0
             counterWords = 0
             counterLines = 0
@@ -40,9 +40,9 @@ with open(args.output, 'w') as finalFile:
                 if row == otherrow:
                     pass
                 else:
-                    othersize = otherrow[5]
-                    otherwords = otherrow[6]
-                    otherlines = otherrow[7]
+                    othersize = otherrow[6]
+                    otherwords = otherrow[7]
+                    otherlines = otherrow[8]
                     if othersize == size:
                         counterSize += 1
                     if otherwords == words:
@@ -51,6 +51,12 @@ with open(args.output, 'w') as finalFile:
                         counterLines += 1
 
             if counterSize > 5 or counterWords > 5 or counterLines > 5 or code == "429" or code == "502" or code == "504":
+                pass
+            elif counterSize > 2 and counterWords > 2:
+                pass
+            elif counterSize > 2 and counterLines > 2:
+                pass
+            elif counterWords > 2 and counterLines > 2:
                 pass
             else:
                 finalFile.write(f"{url} size={size} words={words} lines={linecount}\n")
